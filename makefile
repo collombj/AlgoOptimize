@@ -1,9 +1,9 @@
 CC=gcc
-CFLAGS= -Wall -ansi
+CFLAGS= -Wall -ansi -O3
 LDFLAGS = 
 LDLIBS= -I./headers
 
-SRC= main.c 
+SRC= main.c File.c Compression.c
 OBJECTS= $(SRC:%.c=bin/%.o)
 
 ## Software generation
