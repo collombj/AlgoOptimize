@@ -31,3 +31,4 @@ Cel* createCel(char* word) {
 	return block;
 }
 
+bool addWord()
