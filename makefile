@@ -23,4 +23,5 @@ clean:
 test:
 	make clean
 	make
+	clear
 	./main

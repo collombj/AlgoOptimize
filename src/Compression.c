@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "Compression.h"
+#include "Utils.h"
 
 Cel* createCel(char* word) {
 	Cel* block = NULL;
