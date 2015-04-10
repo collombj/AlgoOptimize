@@ -20,6 +20,10 @@ typedef struct dictionary {
 Dictionary* newDictionary();
 Cel* createCel(char* word);
 bool addWord(Dictionary* d, char* word);
+void moveToBeginning(List* l, Cel* move);
+void compress(Dictionary* d, char* txt);
+void uncompression(Dictionary* d, char* txt);
+void freeDictionnary(Dictionary* d);
 
 
 #endif

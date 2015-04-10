@@ -7,4 +7,6 @@
  */
 typedef enum { false, true } bool;
 
+bool reallocString(char** input, int size);
+
 #endif
