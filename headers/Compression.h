@@ -3,27 +3,32 @@
 
 #include "Utils.h"
 
+#define FILE_BUFFER 2048
+
 typedef struct cel {
-	char* word;
-	struct cel* next;
-	struct cel* prev;
+	char* word;					/**< Mot */
+	struct cel* next;			/**< Cellule suivante */
+	struct cel* prev;			/**< Cellule précédente */
 } Cel;
 
 typedef Cel* List;
 
 typedef struct dictionary {
-	List l;
-	char* out;
+	List l;						/**< Liste de mot */
+	char out[FILE_BUFFER];		/**< Texte de sortie -- Bufferisé */
+	int size;					/**< Taille du texte en buffer */
 } Dictionary;
 
 
-Dictionary* newDictionary();
+void initDictionary();
 Cel* createCel(char* word);
-bool addWord(Dictionary* d, char* word);
-void moveToBeginning(List* l, Cel* move);
-void compress(Dictionary* d, char* txt);
-void uncompression(Dictionary* d, char* txt);
-void freeDictionnary(Dictionary* d);
+bool addWord(char* word);
+void moveToBeginning(Cel* move);
+void compress(char* txt);
+void freeDictionnary();
+
+void addWordToOutput(char* word);
+char* getOutput();
 
 
 #endif

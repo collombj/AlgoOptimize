@@ -6,19 +6,15 @@
 #include "Utils.h"
 
 int main(int argc, char *argv[]) {
-	Dictionary* input = newDictionary();
-	Dictionary* output = newDictionary();
+	initDictionary();
 
-	char txt[256] = "deux et deux, quatre";
+	char txt[256] = "deux et deux, quatre\nquatre et quatre, huit";
 
-	compress(input, txt);
+	compress(txt);
 
-	printf("Compression : %s\n", input->out);
+	printf("Compression : %s\n", getOutput());
 
-	/*uncompression(output, input->out);*/
-
-	freeDictionnary(input);
-	freeDictionnary(output);
+	freeDictionnary();
 
 	return 0;
 }

@@ -7,18 +7,11 @@
 
 #define BUFFER 256
 
-Dictionary* newDictionary() {
-	Dictionary* d = (Dictionary*)malloc(sizeof(Dictionary));
+static Dictionary d;
 
-	if(d == NULL) {
-		fprintf(stderr, "Compression: Memory Allocation Error\n");
-		return NULL;
-	}
-
-	d->l = NULL;
-	d->out = NULL;
-
-	return d;
+void initDictionary() {
+	d.l = NULL;
+	d.size = 0;
 }
 
 Cel* createCel(char* word) {
@@ -47,53 +40,42 @@ Cel* createCel(char* word) {
 	return block;
 }
 
-bool addWord(Dictionary* d, char* word) {
-	Cel* ptr      = NULL;
+bool addWord(char* word) {
+	List ptr      = NULL;
 	int  pos	  = 1;
 	char tmp[BUFFER];
 
 	/* Liste Vide */
-	if(d->l == NULL) {
-		d->l = createCel(word);
+	if(d.l == NULL) {
+		d.l = createCel(word);
 
-		if(d->l == NULL) {
+		if(d.l == NULL) {
 			fprintf(stderr, "Compression: Allocation Error\n");
 			return false;
 		} else {
-			sprintf(tmp, "%d %d %s", 0, (int)strlen(word), word);
-			if(reallocString(&(d->out), strlen(tmp))) {
-				sprintf(d->out, "%s", tmp);
-				return true;
-			} else {
-				return false;
-			}
+			sprintf(tmp, "%d %d %s ", 0, (int)strlen(word), word);
+			addWordToOutput(tmp);
+			return true;
 		}
 	}
 
-	ptr = (d->l);
+	/* Itérateur */
+	ptr = d.l;
 
 	/* Mot en premier */
 	if(strcmp(ptr->word, word) == 0) {
-		sprintf(tmp, "%d", pos);
-		if(reallocString(&(d->out), strlen(d->out) + strlen(tmp))) {
-			sprintf(d->out, "%s %s", d->out, tmp);
-			return true;
-		} else {
-			return false;
-		}
+		sprintf(tmp, "%d ", pos);
+		addWordToOutput(tmp);
+		return true;
 	}
 
 	/* Parcours de la liste */
 	while(ptr->next != NULL) {
 		if(strcmp(ptr->word, word) == 0) {
-			sprintf(tmp, "%d", pos);
-			if(reallocString(&(d->out), strlen(d->out) + strlen(tmp))) {
-				sprintf(d->out, "%s %s", d->out, tmp);
-				moveToBeginning(&(d->l), ptr);
-				return true;
-			} else {
-				return false;
-			}
+			sprintf(tmp, "%d ", pos);
+			addWordToOutput(tmp);
+			moveToBeginning(ptr);
+			return true;
 		}
 		
 		pos++;
@@ -102,14 +84,10 @@ bool addWord(Dictionary* d, char* word) {
 
 	/* En dernier */
 	if(strcmp(ptr->word, word) == 0) {
-		sprintf(tmp, "%d", pos);
-		if(reallocString(&(d->out), strlen(d->out) + strlen(tmp))) {
-			sprintf(d->out, "%s %s", d->out, tmp);
-			moveToBeginning(&(d->l), ptr);
-			return true;
-		} else {
-			return false;
-		}
+		sprintf(tmp, "%d ", pos);
+		addWordToOutput(tmp);
+		moveToBeginning(ptr);
+		return true;
 	} else {
 		pos++;
 	}
@@ -122,18 +100,14 @@ bool addWord(Dictionary* d, char* word) {
 		return false;
 	} else {
 		ptr->next->prev = ptr;
-		sprintf(tmp, "%d %d %s", 0, (int)strlen(word), word);
-		if(reallocString(&(d->out), strlen(d->out) + strlen(tmp))) {
-			sprintf(d->out, "%s %s", d->out, tmp);
-			return true;
-		} else {
-			return false;
-		}
+		sprintf(tmp, "%d %d %s ", 0, (int)strlen(word), word);
+		addWordToOutput(tmp);
+		return true;
 	}
 }
 
-void moveToBeginning(List* l, Cel* move) {
-	if(move == NULL || *l == NULL) {
+void moveToBeginning(Cel* move) {
+	if(move == NULL || d.l == NULL) {
 		return;
 	}
 
@@ -146,12 +120,12 @@ void moveToBeginning(List* l, Cel* move) {
 	}
 
 	move->prev = NULL;
-	move->next = *l;
-	(*l)->prev = move;
-	*l = move;
+	move->next = d.l;
+	d.l->prev = move;
+	d.l = move;
 }
 
-void compress(Dictionary* d, char* txt) {
+void compress(char* txt) {
 	int i, size = strlen(txt);
 	int p_odd = -1, p_word = -1;
 	char word[BUFFER], odd[BUFFER];
@@ -173,7 +147,7 @@ void compress(Dictionary* d, char* txt) {
 			if(p_odd == -1 && p_word != -1) {
 				strncpy(word, txt + p_word, i-p_word);
 				word[i-p_word] = '\0';
-				addWord(d, word);
+				addWord(word);
 			}
 			if(p_odd == -1) {
 				p_odd = i;
@@ -184,8 +158,7 @@ void compress(Dictionary* d, char* txt) {
 			if(p_word == -1 && p_odd != -1) {
 				strncpy(odd, txt + p_odd, i-p_odd);
 				odd[i-p_odd] = '\0';
-				printf("%s\n", odd);
-				addWord(d, odd);
+				addWord(odd);
 			}
 			if(p_word == -1) {
 				p_word = i;
@@ -197,28 +170,32 @@ void compress(Dictionary* d, char* txt) {
 	if(p_odd != -1) {
 		strncpy(odd, txt + p_odd, i-p_odd);
 		odd[i-p_odd] = '\0';
-		addWord(d, odd);
+		addWord(odd);
 	} else {
 		strncpy(word, txt + p_word, i-p_word);
 		word[i-p_word] = '\0';
-		addWord(d, word);
+		addWord(word);
 	}
 }
 
-void freeDictionnary(Dictionary* d) {
-	Cel* tmp = NULL;
+void freeDictionnary() {
+	List tmp = NULL;
 
-	free(d->out);
-	d->out = NULL;
+	while(d.l != NULL) {
+		tmp = d.l->next;
 
-	while(d->l != NULL) {
-		tmp = d->l->next;
+		free(d.l->word);
+		free(d.l);
 
-		free(d->l->word);
-		free(d->l);
-
-		d->l = tmp;
+		d.l = tmp;
 	}
+}
 
-	d = NULL;
+void addWordToOutput(char* word) {
+	strcat(d.out, word);
+	d.size += strlen(word);
+}
+
+char* getOutput() {
+	return d.out;
 }
