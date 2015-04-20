@@ -1,17 +1,38 @@
+/**
+ * 	@file Compression.c
+ * 	
+ * 	@author COLLOMB Jérémie <contact@collombj.com>
+ * 			FORET   Gaël    <gforet@etud.u-pem.fr>
+ * 			
+ * 	@date 20/04/2015
+ * 	
+ * 	@brief Librairie de compression et de décompression.
+ * 	
+ * 	@details La librairie permet de compresser et de décompresser un fichier.
+ * 			 La librairie offre les fonctions suivantes :
+ * 			 
+ * 			 - initList()       	 -- Pour initialiser la liste
+ * 			 - createCel(char*) 	 -- Pour allouer une cellule en mémoire
+ * 			 - compress(char)   	 -- Pour traiter un mot. Si le mot existe, on ajoute l'indice dans le texte compressé, sinon on créé une cellule en agissant dans le texte compressé.
+ * 			 - moveTobeginning(Cel*) -- Pour déplacer une cellule en tête de liste.
+ * 			 - freeDictionnary()     -- Pour libérer la liste.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 #include "Compression.h"
 #include "Utils.h"
+#include "File.h"
 
-#define BUFFER 256
+/**
+ * @brief Variable static permettant de stocker la liste des mots.
+ */
+static List d;
 
-static Dictionary d;
-
-void initDictionary() {
-	d.l = NULL;
-	d.size = 0;
+void initList() {
+	d = NULL;
 }
 
 Cel* createCel(char* word) {
@@ -40,40 +61,36 @@ Cel* createCel(char* word) {
 	return block;
 }
 
-bool addWord(char* word) {
+bool compress(char* word) {
 	List ptr      = NULL;
 	int  pos	  = 1;
-	char tmp[BUFFER];
 
 	/* Liste Vide */
-	if(d.l == NULL) {
-		d.l = createCel(word);
+	if(d == NULL) {
+		d = createCel(word);
 
-		if(d.l == NULL) {
+		if(d == NULL) {
 			fprintf(stderr, "Compression: Allocation Error\n");
 			return false;
 		} else {
-			sprintf(tmp, "%d %d %s ", 0, (int)strlen(word), word);
-			addWordToOutput(tmp);
+			convertNewWordToBinary(strlen(word), word);
 			return true;
 		}
 	}
 
 	/* Itérateur */
-	ptr = d.l;
+	ptr = d;
 
 	/* Mot en premier */
 	if(strcmp(ptr->word, word) == 0) {
-		sprintf(tmp, "%d ", pos);
-		addWordToOutput(tmp);
+		convertPositionToBinary(pos);
 		return true;
 	}
 
 	/* Parcours de la liste */
 	while(ptr->next != NULL) {
 		if(strcmp(ptr->word, word) == 0) {
-			sprintf(tmp, "%d ", pos);
-			addWordToOutput(tmp);
+			convertPositionToBinary(pos);
 			moveToBeginning(ptr);
 			return true;
 		}
@@ -84,8 +101,7 @@ bool addWord(char* word) {
 
 	/* En dernier */
 	if(strcmp(ptr->word, word) == 0) {
-		sprintf(tmp, "%d ", pos);
-		addWordToOutput(tmp);
+		convertPositionToBinary(pos);
 		moveToBeginning(ptr);
 		return true;
 	} else {
@@ -100,14 +116,13 @@ bool addWord(char* word) {
 		return false;
 	} else {
 		ptr->next->prev = ptr;
-		sprintf(tmp, "%d %d %s ", 0, (int)strlen(word), word);
-		addWordToOutput(tmp);
+		convertNewWordToBinary(strlen(word), word);
 		return true;
 	}
 }
 
 void moveToBeginning(Cel* move) {
-	if(move == NULL || d.l == NULL) {
+	if(move == NULL || d == NULL) {
 		return;
 	}
 
@@ -120,82 +135,20 @@ void moveToBeginning(Cel* move) {
 	}
 
 	move->prev = NULL;
-	move->next = d.l;
-	d.l->prev = move;
-	d.l = move;
-}
-
-void compress(char* txt) {
-	int i, size = strlen(txt);
-	int p_odd = -1, p_word = -1;
-	char word[BUFFER], odd[BUFFER];
-
-	for(i = 0 ; i < size ; i++) {
-		/* Caractères spéciaux*/
-		if(
-			txt[i] <= 47 ||
-			(txt[i] >= 58 && txt[i] <= 64) ||
-			(txt[i] >= 91 && txt[i] <= 96) ||
-			(txt[i] >= 123 && txt[i] <= 126)
-		) {
-			/* Remplacement de l'espace */
-			if(txt[i] == ' ') {
-				txt[i] = '_';
-			}
-
-			/* Debut des caractères spéciaux */
-			if(p_odd == -1 && p_word != -1) {
-				strncpy(word, txt + p_word, i-p_word);
-				word[i-p_word] = '\0';
-				addWord(word);
-			}
-			if(p_odd == -1) {
-				p_odd = i;
-				p_word = -1;
-			}
-		} else {
-			/* Debut des mots */
-			if(p_word == -1 && p_odd != -1) {
-				strncpy(odd, txt + p_odd, i-p_odd);
-				odd[i-p_odd] = '\0';
-				addWord(odd);
-			}
-			if(p_word == -1) {
-				p_word = i;
-				p_odd = -1;
-			}
-		}
-	}
-
-	if(p_odd != -1) {
-		strncpy(odd, txt + p_odd, i-p_odd);
-		odd[i-p_odd] = '\0';
-		addWord(odd);
-	} else {
-		strncpy(word, txt + p_word, i-p_word);
-		word[i-p_word] = '\0';
-		addWord(word);
-	}
+	move->next = d;
+	d->prev = move;
+	d = move;
 }
 
 void freeDictionnary() {
 	List tmp = NULL;
 
-	while(d.l != NULL) {
-		tmp = d.l->next;
+	while(d != NULL) {
+		tmp = d->next;
 
-		free(d.l->word);
-		free(d.l);
+		free(d->word);
+		free(d);
 
-		d.l = tmp;
+		d = tmp;
 	}
-}
-
-void addWordToOutput(char* word) {
-	strcat(d.out, word);
-	d.size += strlen(word);
-}
-
-char* getOutput() {
-	return d.out;
 }

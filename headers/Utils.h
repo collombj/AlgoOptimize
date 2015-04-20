@@ -3,10 +3,8 @@
 
 
 /**	
- * @brief Create a boolean type (like C++ or Java). The values are false = 0 and true = 1.
+ * @brief Création du type booléen (cf. C++ et Java). Les valeurs sont false = 0 et true = 1.
  */
 typedef enum { false, true } bool;
-
-bool reallocString(char** input, int size);
 
 #endif

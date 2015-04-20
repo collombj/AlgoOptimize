@@ -4,17 +4,18 @@
 
 #include "Compression.h"
 #include "Utils.h"
+#include "File.h"
 
 int main(int argc, char *argv[]) {
-	initDictionary();
+	open("data/output.bin", "data/uncrypted.txt");				/* Ouverture de l'entrée et de la sortie */
+	initList();			/* Initialisation de la liste de mot */
 
-	char txt[256] = "deux et deux, quatre\nquatre et quatre, huit";
 
-	compress(txt);
+	/*parseText();*/
+	parseBinary();
 
-	printf("Compression : %s\n", getOutput());
-
-	freeDictionnary();
+	freeDictionnary();		/* Libération du dictionnaire */
+	close();				/* Fermeture de l'entrée et de la sortie */
 
 	return 0;
 }
