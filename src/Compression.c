@@ -152,3 +152,73 @@ void freeDictionnary() {
 		d = tmp;
 	}
 }
+
+
+
+bool addWordTailList(char* word){
+	List copyList = d; 
+	Cel* tailCel = createCel(word);
+
+	if(tailCel == NULL) /* contrôle */
+		return false;
+
+	if(d == NULL){ /* cas liste vide */
+		d = tailCel;
+		return true;
+	}
+
+	while(copyList->next != NULL){ /* boucle sur la liste */
+		copyList = copyList->next;
+	}
+
+	/* ajout en fin de liste */
+	tailCel->next = NULL;
+	tailCel->prev = copyList;
+	copyList->next = tailCel;
+
+	return true;
+}
+
+
+
+Cel* getCelFromPos(int pos){
+	int cpt = 1;
+	List copyList = d; 
+
+	while(copyList != NULL){ /* boucle sur la liste */
+		if(pos == cpt){
+			return copyList; /* return la cellule */
+		}
+		copyList = copyList->next;
+		cpt++;
+	}
+	return NULL;
+}
+
+
+
+bool uncompressNewWord(int size, char* word){
+	bool res;
+  	writeBinaryFromText(word, strlen(word)); /* écriture dans le fichier de sortie */
+  	res = addWordTailList(word); /* ajout en queue */
+
+  	if(res == false) /* contrôle */
+  		return false;
+  	return true;
+}
+
+
+
+bool uncompressExistingWord(int pos){
+	Cel* celPos;
+
+	celPos = getCelFromPos(pos); /* on récupère la cellule à la position pos */
+	if (celPos == NULL){
+		return false;
+	}
+
+	writeBinaryFromText(celPos->word, strlen(celPos->word)); /* écriture dans le fichier de sortie */
+	moveToBeginning(celPos); /* on déplace en tête de liste */
+
+	return true;
+}

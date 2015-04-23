@@ -149,6 +149,14 @@ void parseText() {
 
 		i++;
 	}
+
+	if(odd && i > 0) {
+		word[i] = '\0';
+		compress(word);
+	} else if(!odd && i > 0) {
+		word[i] = '\0';
+		compress(word);
+	}
 }
 
 void parseBinary() {
@@ -164,9 +172,9 @@ void parseBinary() {
 			readTextFromBinary(word, size);
 			word[size] = '\0';
 
-			printf("%d %d %s ", pos, size, word);	/* Nouveau mot*/
+			uncompressNewWord(size, word); /* Nouveau mot*/
 		} else {
-			printf("%d ", pos);						/* Mot connus */
+			uncompressExistingWord(pos); /* Mot connus */
 		}
 	}
 

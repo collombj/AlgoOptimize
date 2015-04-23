@@ -7,7 +7,7 @@
 #include "File.h"
 
 int main(int argc, char *argv[]) {
-	open("data/output.bin", "data/uncrypted.txt");				/* Ouverture de l'entrée et de la sortie */
+	open("data/output.bin", "data/caca.txt");				/* Ouverture de l'entrée et de la sortie */
 	initList();			/* Initialisation de la liste de mot */
 
 
