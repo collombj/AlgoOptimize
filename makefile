@@ -3,7 +3,7 @@ CFLAGS= -Wall -ansi -O3
 LDFLAGS = 
 LDLIBS= -I./headers
 
-SRC= main.c File.c Compression.c
+SRC= main.c File.c Compression.c Utils.c
 OBJECTS= $(SRC:%.c=bin/%.o)
 
 OUTPUT=main

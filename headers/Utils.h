@@ -7,4 +7,6 @@
  */
 typedef enum { false, true } bool;
 
+void getHelp();
+
 #endif

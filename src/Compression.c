@@ -122,7 +122,7 @@ bool compress(char* word) {
 }
 
 void moveToBeginning(Cel* move) {
-	if(move == NULL || d == NULL) {
+	if(move == NULL || d == NULL || move == d) {
 		return;
 	}
 
@@ -172,7 +172,6 @@ bool addWordTailList(char* word){
 	}
 
 	/* ajout en fin de liste */
-	tailCel->next = NULL;
 	tailCel->prev = copyList;
 	copyList->next = tailCel;
 
@@ -199,7 +198,7 @@ Cel* getCelFromPos(int pos){
 
 bool uncompressNewWord(int size, char* word){
 	bool res;
-  	writeBinaryFromText(word, strlen(word)); /* écriture dans le fichier de sortie */
+  	writeBinaryFromText(word, size); /* écriture dans le fichier de sortie */
   	res = addWordTailList(word); /* ajout en queue */
 
   	if(res == false) /* contrôle */

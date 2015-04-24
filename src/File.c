@@ -53,8 +53,14 @@ bool open(char* input, char* output) {
 	fin = fopen(input, "rb");
 	fout = fopen(output, "wb");
 
-	if(fin == NULL || fout == NULL) {
-		fprintf(stderr, "FILE: Openning failed\n");
+	if(fin == NULL) {
+		fprintf(stderr, "FILE %s: Openning failed.\nThe file may be not exist, or right privilege needed.\n", input);
+		return false;
+	}
+
+	if(fout == NULL) {
+		fprintf(stderr, "FILE %s: Openning failed.\nThe file may be not exist, or right privilege needed.\n", output);
+		fclose(fin);
 		return false;
 	}
 
@@ -84,20 +90,26 @@ void writeBinaryFromText(char* txt, int length) {
 
 short readShortFromBinary() {
 	short s;
-	fread(&s, sizeof(short), 1, fin);
+	if(fread(&s, sizeof(short), 1, fin) == 0) {
+		return -1;
+	}
 
 	return s;
 }
 
 char readCharFromBinary() {
 	char c;
-	fread(&c, sizeof(char), 1, fin);
+	if(fread(&c, sizeof(char), 1, fin) == 0) {
+		return -1;
+	}
 
 	return c;
 }
 
 void readTextFromBinary(char* txt, int length) {
-	fread(txt, sizeof(char), length, fin);
+	if(fread(txt, sizeof(char), length, fin) == 0) {
+		txt[0] = '\0';
+	}
 }
 
 
@@ -163,15 +175,18 @@ void parseBinary() {
 	int pos, size;
 	char word[BUFFER];
 
-	while(!feof(fin)) {
+	while(1) {
 		pos = readShortFromBinary();	/* Récupération de la position */
+
+		if(pos == -1) { return;	}
 
 		/* Nouveau mot */
 		if(pos == 0) {
 			size = readCharFromBinary();
+			if(size == -1) { return; }
+
 			readTextFromBinary(word, size);
 			word[size] = '\0';
-
 			uncompressNewWord(size, word); /* Nouveau mot*/
 		} else {
 			uncompressExistingWord(pos); /* Mot connus */
