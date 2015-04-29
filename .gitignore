@@ -32,4 +32,14 @@
 *.dSYM/
 
 #compile
-main
+Compresse
+
+#SFTP
+sftp-config.json
+
+# Rapport et tests
+*.docx
+Architecture.png
+Architecture.vsdx
+*.tmp
+data/*

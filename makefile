@@ -6,7 +6,7 @@ LDLIBS= -I./headers
 SRC= main.c File.c Compression.c Utils.c
 OBJECTS= $(SRC:%.c=bin/%.o)
 
-OUTPUT=main
+OUTPUT=Compress
 
 ## Software generation
 $(OUTPUT): $(OBJECTS)

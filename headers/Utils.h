@@ -7,6 +7,11 @@
  */
 typedef enum { false, true } bool;
 
+/**
+ * @brief Fonction permettant d'afficher la page d'aide
+ * 
+ * @details La fonction affiche la page d'aide de l'application.
+ */
 void getHelp();
 
 #endif

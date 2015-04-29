@@ -11,11 +11,15 @@
  * 	@details La librairie permet de compresser et de décompresser un fichier.
  * 			 La librairie offre les fonctions suivantes :
  * 			 
- * 			 - initList()       	 -- Pour initialiser la liste
- * 			 - createCel(char*) 	 -- Pour allouer une cellule en mémoire
- * 			 - compress(char)   	 -- Pour traiter un mot. Si le mot existe, on ajoute l'indice dans le texte compressé, sinon on créé une cellule en agissant dans le texte compressé.
- * 			 - moveTobeginning(Cel*) -- Pour déplacer une cellule en tête de liste.
- * 			 - freeDictionnary()     -- Pour libérer la liste.
+ * 			 - initList()       	 		-- Pour initialiser la liste
+ * 			 - createCel(char*) 	 		-- Pour allouer une cellule en mémoire
+ * 			 - compress(char)   	 		-- Pour traiter un mot. Si le mot existe, on ajoute l'indice dans le texte compressé, sinon on créé une cellule en agissant dans le texte compressé.
+ * 			 - moveTobeginning(Cel*) 		-- Pour déplacer une cellule en tête de liste.
+ * 			 - freeDictionnary()     		-- Pour libérer la liste.
+ *			 - addWordTailList(char*)		-- Pour insérer un mot en fin de liste
+ *			 - getCelFromPos(int)	 		-- Pour récupérer la cellule à la position passé en paramètre
+ *			 - uncompressNewWord(int, char*)-- Pour décomprésser un nouveau mot (position valant 0)
+ *			 - uncompressExistingWord(int)  -- Pour décomprésser un mot connu en position passé en paramètre
  */
 
 #include <stdio.h>

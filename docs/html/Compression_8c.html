@@ -1,0 +1,398 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.5"/>
+<title>AlgoOptimize: Référence du fichier src/Compression.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">AlgoOptimize
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   <div id="projectbrief">Projet de compression de texte -- Projet pour le cours d&#39;algorithmie</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.5 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Page&#160;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&#160;associées</span></a></li>
+      <li><a href="annotated.html"><span>Structures&#160;de&#160;données</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Liste&#160;des&#160;fichiers</span></a></li>
+      <li><a href="globals.html"><span>Variables&#160;globale</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Tout</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Structures de données</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Fichiers</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Fonctions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Définitions de type</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Énumérations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Valeurs énumérées</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Fonctions</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence du fichier Compression.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Librairie de compression et de décompression.  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br/>
+<code>#include &lt;stdlib.h&gt;</code><br/>
+<code>#include &lt;string.h&gt;</code><br/>
+<code>#include &quot;<a class="el" href="Compression_8h_source.html">Compression.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="Utils_8h_source.html">Utils.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="File_8h_source.html">File.h</a>&quot;</code><br/>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a64ae0e46d2b0497d9fb7cb774dc675e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Compression_8c.html#a64ae0e46d2b0497d9fb7cb774dc675e8">initList</a> ()</td></tr>
+<tr class="memdesc:a64ae0e46d2b0497d9fb7cb774dc675e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction initialisant la liste.  <a href="#a64ae0e46d2b0497d9fb7cb774dc675e8">Plus de détails...</a><br/></td></tr>
+<tr class="separator:a64ae0e46d2b0497d9fb7cb774dc675e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7c3bb463ef8e616bc87eed12a1908c9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Compression_8h.html#ac1fe946328623a26bd313e411f218691">Cel</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Compression_8c.html#aa7c3bb463ef8e616bc87eed12a1908c9">createCel</a> (char *word)</td></tr>
+<tr class="memdesc:aa7c3bb463ef8e616bc87eed12a1908c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant d'allouer de la mémoie pour une cellule.  <a href="#aa7c3bb463ef8e616bc87eed12a1908c9">Plus de détails...</a><br/></td></tr>
+<tr class="separator:aa7c3bb463ef8e616bc87eed12a1908c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2013dde9cfd55a053885abaf0345881d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Utils_8h.html#af6a258d8f3ee5206d682d799316314b1">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Compression_8c.html#a2013dde9cfd55a053885abaf0345881d">compress</a> (char *word)</td></tr>
+<tr class="memdesc:a2013dde9cfd55a053885abaf0345881d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction compressant un mot.  <a href="#a2013dde9cfd55a053885abaf0345881d">Plus de détails...</a><br/></td></tr>
+<tr class="separator:a2013dde9cfd55a053885abaf0345881d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b9a6488709370bbd80d0d37e8464e2c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Compression_8c.html#a8b9a6488709370bbd80d0d37e8464e2c">moveToBeginning</a> (<a class="el" href="Compression_8h.html#ac1fe946328623a26bd313e411f218691">Cel</a> *move)</td></tr>
+<tr class="memdesc:a8b9a6488709370bbd80d0d37e8464e2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant le déplacement d'une celulle en tête de liste.  <a href="#a8b9a6488709370bbd80d0d37e8464e2c">Plus de détails...</a><br/></td></tr>
+<tr class="separator:a8b9a6488709370bbd80d0d37e8464e2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab24b0ffd297f7dddb29776d6c4b07fd1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Compression_8c.html#ab24b0ffd297f7dddb29776d6c4b07fd1">freeDictionnary</a> ()</td></tr>
+<tr class="memdesc:ab24b0ffd297f7dddb29776d6c4b07fd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant de libérer la liste de la mémoire.  <a href="#ab24b0ffd297f7dddb29776d6c4b07fd1">Plus de détails...</a><br/></td></tr>
+<tr class="separator:ab24b0ffd297f7dddb29776d6c4b07fd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2434d97e8eb43308a4294e2d8f3547f7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Utils_8h.html#af6a258d8f3ee5206d682d799316314b1">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Compression_8c.html#a2434d97e8eb43308a4294e2d8f3547f7">addWordTailList</a> (char *word)</td></tr>
+<tr class="memdesc:a2434d97e8eb43308a4294e2d8f3547f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant d'ajouter une cellule en fin de liste avec le mot passé en paramètre.  <a href="#a2434d97e8eb43308a4294e2d8f3547f7">Plus de détails...</a><br/></td></tr>
+<tr class="separator:a2434d97e8eb43308a4294e2d8f3547f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0a77cdde35a92d7bcbe214e692dd071"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Compression_8h.html#ac1fe946328623a26bd313e411f218691">Cel</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Compression_8c.html#ad0a77cdde35a92d7bcbe214e692dd071">getCelFromPos</a> (int pos)</td></tr>
+<tr class="memdesc:ad0a77cdde35a92d7bcbe214e692dd071"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant de récupérer la cellule à la position passé en paramètre.  <a href="#ad0a77cdde35a92d7bcbe214e692dd071">Plus de détails...</a><br/></td></tr>
+<tr class="separator:ad0a77cdde35a92d7bcbe214e692dd071"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7dd085474763cfd067df625a95bb8997"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Utils_8h.html#af6a258d8f3ee5206d682d799316314b1">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Compression_8c.html#a7dd085474763cfd067df625a95bb8997">uncompressNewWord</a> (int size, char *word)</td></tr>
+<tr class="memdesc:a7dd085474763cfd067df625a95bb8997"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant de décompresser un nouveau mot (position vallant 0).  <a href="#a7dd085474763cfd067df625a95bb8997">Plus de détails...</a><br/></td></tr>
+<tr class="separator:a7dd085474763cfd067df625a95bb8997"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1d9d96ab0522f1c91867898e2aea2ea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Utils_8h.html#af6a258d8f3ee5206d682d799316314b1">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Compression_8c.html#ad1d9d96ab0522f1c91867898e2aea2ea">uncompressExistingWord</a> (int pos)</td></tr>
+<tr class="memdesc:ad1d9d96ab0522f1c91867898e2aea2ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant de décompresser un mot connu.  <a href="#ad1d9d96ab0522f1c91867898e2aea2ea">Plus de détails...</a><br/></td></tr>
+<tr class="separator:ad1d9d96ab0522f1c91867898e2aea2ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Librairie de compression et de décompression. </p>
+<dl class="section author"><dt>Auteur</dt><dd>COLLOMB Jérémie <a href="#" onclick="location.href='mai'+'lto:'+'con'+'ta'+'ct@'+'co'+'llo'+'mb'+'j.c'+'om'; return false;">conta<span style="display: none;">.nosp@m.</span>ct@c<span style="display: none;">.nosp@m.</span>ollom<span style="display: none;">.nosp@m.</span>bj.c<span style="display: none;">.nosp@m.</span>om</a> FORET Gaël <a href="#" onclick="location.href='mai'+'lto:'+'gfo'+'re'+'t@e'+'tu'+'d.u'+'-p'+'em.'+'fr'; return false;">gfore<span style="display: none;">.nosp@m.</span>t@et<span style="display: none;">.nosp@m.</span>ud.u-<span style="display: none;">.nosp@m.</span>pem.<span style="display: none;">.nosp@m.</span>fr</a></dd></dl>
+<dl class="section date"><dt>Date</dt><dd>20/04/2015</dd></dl>
+<p>La librairie permet de compresser et de décompresser un fichier. La librairie offre les fonctions suivantes :</p>
+<ul>
+<li><a class="el" href="Compression_8h.html#a64ae0e46d2b0497d9fb7cb774dc675e8" title="Fonction initialisant la liste. ">initList()</a> &ndash; Pour initialiser la liste</li>
+<li><a class="el" href="Compression_8c.html#aa7c3bb463ef8e616bc87eed12a1908c9" title="Fonction permettant d&#39;allouer de la mémoie pour une cellule. ">createCel(char*)</a> &ndash; Pour allouer une cellule en mémoire</li>
+<li>compress(char) &ndash; Pour traiter un mot. Si le mot existe, on ajoute l'indice dans le texte compressé, sinon on créé une cellule en agissant dans le texte compressé.</li>
+<li>moveTobeginning(Cel*) &ndash; Pour déplacer une cellule en tête de liste.</li>
+<li><a class="el" href="Compression_8h.html#ab24b0ffd297f7dddb29776d6c4b07fd1" title="Fonction permettant de libérer la liste de la mémoire. ">freeDictionnary()</a> &ndash; Pour libérer la liste.</li>
+<li><a class="el" href="Compression_8c.html#a2434d97e8eb43308a4294e2d8f3547f7" title="Fonction permettant d&#39;ajouter une cellule en fin de liste avec le mot passé en paramètre. ">addWordTailList(char*)</a> &ndash; Pour insérer un mot en fin de liste</li>
+<li><a class="el" href="Compression_8c.html#ad0a77cdde35a92d7bcbe214e692dd071" title="Fonction permettant de récupérer la cellule à la position passé en paramètre. ">getCelFromPos(int)</a> &ndash; Pour récupérer la cellule à la position passé en paramètre</li>
+<li><a class="el" href="Compression_8c.html#a7dd085474763cfd067df625a95bb8997" title="Fonction permettant de décompresser un nouveau mot (position vallant 0). ">uncompressNewWord(int, char*)</a>&ndash; Pour décomprésser un nouveau mot (position valant 0)</li>
+<li><a class="el" href="Compression_8c.html#ad1d9d96ab0522f1c91867898e2aea2ea" title="Fonction permettant de décompresser un mot connu. ">uncompressExistingWord(int)</a> &ndash; Pour décomprésser un mot connu en position passé en paramètre </li>
+</ul>
+</div><h2 class="groupheader">Documentation des fonctions</h2>
+<a class="anchor" id="a2434d97e8eb43308a4294e2d8f3547f7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="Utils_8h.html#af6a258d8f3ee5206d682d799316314b1">bool</a> addWordTailList </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>word</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction permettant d'ajouter une cellule en fin de liste avec le mot passé en paramètre. </p>
+<p>La fonction alloue de la mémoire à la cellule, et stocke le mot (word) dans celle-ci et l'ajoute en fin de liste.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">word</td><td>Le mot devant être stocké dans la cellule</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Retourne true si la fonction est un succès sinon false </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a2013dde9cfd55a053885abaf0345881d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="Utils_8h.html#af6a258d8f3ee5206d682d799316314b1">bool</a> compress </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>word</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction compressant un mot. </p>
+<p>La fonction prend en charge la compression d'un mot. </p>
+<pre class="fragment">        Algorithme :
+        Pour chaque mot du texte (mot ou ponctuation)
+        – Rechercher le mot dans la liste.
+        – Si le mot existe dans la liste, on le code à l’aide de sa position dans la liste, puis on le déplace en tête de liste.
+        – Si le mot n’est pas dans la liste, on le code par l’entier 0 suivi du mot en clair, et on ajoute ce mot en fin de liste.
+
+    Format :
+        - position -- si le mot existe déjà
+        - position tailleDuMot mot -- si le mot n'existe pas encore
+</pre><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">word</td><td>Le mot a compresser</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>True si la compression est un succès, false sinon. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aa7c3bb463ef8e616bc87eed12a1908c9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="Compression_8h.html#ac1fe946328623a26bd313e411f218691">Cel</a>* createCel </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>word</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction permettant d'allouer de la mémoie pour une cellule. </p>
+<p>La fonction alloue de la mémoire à la cellule, et stocke le mot (word) dans celle-ci.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">word</td><td>Le mot devant être stocké dans la cellule</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Retourne le pointeur sur la cellule allouée en mémoire. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ab24b0ffd297f7dddb29776d6c4b07fd1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void freeDictionnary </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction permettant de libérer la liste de la mémoire. </p>
+<p>La fonction libère chaque cellulle, ainsi que le contenu de celle-ci, pour libérer la mémoire proprement. </p>
+
+</div>
+</div>
+<a class="anchor" id="ad0a77cdde35a92d7bcbe214e692dd071"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="Compression_8h.html#ac1fe946328623a26bd313e411f218691">Cel</a>* getCelFromPos </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>pos</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction permettant de récupérer la cellule à la position passé en paramètre. </p>
+<p>La fonction parcourt la liste et renvoie la cellule à la position en paramètre. S'il n'y pas de cellule à cette position renvoie NULL.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pos</td><td>La position de la cellule que l'on souhaite récupérer</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Retourne le pointeur sur la cellule. NULL si la position n'existe pas dans la liste. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a64ae0e46d2b0497d9fb7cb774dc675e8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void initList </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction initialisant la liste. </p>
+<p>La fonction initialise la variable static de stockage de la liste de mot.</p>
+<dl class="section warning"><dt>Avertissement</dt><dd>Cette fonction doit être appelé avant toutes manipulations de la liste (l'intégrité des données pourraient être atteinte en cas de non respect de cette avertissement). </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a8b9a6488709370bbd80d0d37e8464e2c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void moveToBeginning </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="Compression_8h.html#ac1fe946328623a26bd313e411f218691">Cel</a> *&#160;</td>
+          <td class="paramname"><em>move</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction permettant le déplacement d'une celulle en tête de liste. </p>
+<p>La fonction déplace la celulle (move), présente dans la liste, en tête de la liste static.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">move</td><td>C'est la cellule à déplacer en début de liste. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ad1d9d96ab0522f1c91867898e2aea2ea"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="Utils_8h.html#af6a258d8f3ee5206d682d799316314b1">bool</a> uncompressExistingWord </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>pos</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction permettant de décompresser un mot connu. </p>
+<p>La fonction va chercher la cellule à la position indiqué en paramètre. Ecrit dans le fichier de sortie le mot de cette cellule et la déplace en tête de liste.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pos</td><td>La position dans la liste du mot connu;</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Retourne true si la décompression s'est bien déroulé sinon false </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a7dd085474763cfd067df625a95bb8997"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="Utils_8h.html#af6a258d8f3ee5206d682d799316314b1">bool</a> uncompressNewWord </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>word</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction permettant de décompresser un nouveau mot (position vallant 0). </p>
+<p>La fonction écrit le mot dans le fichier de sortie et ajoute le mot en fin de liste.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">size</td><td>Taille du mot. </td></tr>
+    <tr><td class="paramname">word</td><td>Le mot à décompresser.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Retourne true si la décompression s'est bien déroulé sinon false </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.5
+</small></address>
+</body>
+</html>

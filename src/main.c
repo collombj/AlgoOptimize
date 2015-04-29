@@ -6,7 +6,7 @@
 #include "Utils.h"
 
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
 	bool compress = false;
 
 	/* Arguments invalide */
@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) {
 
 	/* Initialisation */
 	if(!open(argv[2], argv[3])) {
-		return 1;
+		return 1;²
 	}
 	initList();
 

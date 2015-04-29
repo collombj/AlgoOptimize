@@ -1,0 +1,268 @@
+\hypertarget{Compression_8h}{\section{Référence du fichier headers/\-Compression.h}
+\label{Compression_8h}\index{headers/\-Compression.\-h@{headers/\-Compression.\-h}}
+}
+
+
+Librairie de compression et de décompression.  
+
+
+{\ttfamily \#include \char`\"{}Utils.\-h\char`\"{}}\\*
+\subsection*{Structures de données}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structcel}{cel}
+\begin{DoxyCompactList}\small\item\em Structure représentant une celulle de liste, doublement chainée. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Définitions de type}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structcel}{cel} \hyperlink{Compression_8h_ac1fe946328623a26bd313e411f218691}{Cel}
+\begin{DoxyCompactList}\small\item\em Structure représentant une celulle de liste, doublement chainée. \end{DoxyCompactList}\item 
+typedef \hyperlink{Compression_8h_ac1fe946328623a26bd313e411f218691}{Cel} $\ast$ \hyperlink{Compression_8h_a7fd8a4ee8d4c64f2ee79570a6b48e98a}{List}
+\begin{DoxyCompactList}\small\item\em Structure représentant le début de la liste chainée. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{Compression_8h_a64ae0e46d2b0497d9fb7cb774dc675e8}{init\-List} ()
+\begin{DoxyCompactList}\small\item\em Fonction initialisant la liste. \end{DoxyCompactList}\item 
+\hyperlink{Compression_8h_ac1fe946328623a26bd313e411f218691}{Cel} $\ast$ \hyperlink{Compression_8h_aa7c3bb463ef8e616bc87eed12a1908c9}{create\-Cel} (char $\ast$word)
+\begin{DoxyCompactList}\small\item\em Fonction permettant d'allouer de la mémoie pour une cellule. \end{DoxyCompactList}\item 
+\hyperlink{Utils_8h_af6a258d8f3ee5206d682d799316314b1}{bool} \hyperlink{Compression_8h_a2013dde9cfd55a053885abaf0345881d}{compress} (char $\ast$word)
+\begin{DoxyCompactList}\small\item\em Fonction compressant un mot. \end{DoxyCompactList}\item 
+void \hyperlink{Compression_8h_a8b9a6488709370bbd80d0d37e8464e2c}{move\-To\-Beginning} (\hyperlink{Compression_8h_ac1fe946328623a26bd313e411f218691}{Cel} $\ast$move)
+\begin{DoxyCompactList}\small\item\em Fonction permettant le déplacement d'une celulle en tête de liste. \end{DoxyCompactList}\item 
+void \hyperlink{Compression_8h_ab24b0ffd297f7dddb29776d6c4b07fd1}{free\-Dictionnary} ()
+\begin{DoxyCompactList}\small\item\em Fonction permettant de libérer la liste de la mémoire. \end{DoxyCompactList}\item 
+\hyperlink{Utils_8h_af6a258d8f3ee5206d682d799316314b1}{bool} \hyperlink{Compression_8h_a2434d97e8eb43308a4294e2d8f3547f7}{add\-Word\-Tail\-List} (char $\ast$word)
+\begin{DoxyCompactList}\small\item\em Fonction permettant d'ajouter une cellule en fin de liste avec le mot passé en paramètre. \end{DoxyCompactList}\item 
+\hyperlink{Compression_8h_ac1fe946328623a26bd313e411f218691}{Cel} $\ast$ \hyperlink{Compression_8h_ad0a77cdde35a92d7bcbe214e692dd071}{get\-Cel\-From\-Pos} (int pos)
+\begin{DoxyCompactList}\small\item\em Fonction permettant de récupérer la cellule à la position passé en paramètre. \end{DoxyCompactList}\item 
+\hyperlink{Utils_8h_af6a258d8f3ee5206d682d799316314b1}{bool} \hyperlink{Compression_8h_a7dd085474763cfd067df625a95bb8997}{uncompress\-New\-Word} (int size, char $\ast$word)
+\begin{DoxyCompactList}\small\item\em Fonction permettant de décompresser un nouveau mot (position vallant 0). \end{DoxyCompactList}\item 
+\hyperlink{Utils_8h_af6a258d8f3ee5206d682d799316314b1}{bool} \hyperlink{Compression_8h_ad1d9d96ab0522f1c91867898e2aea2ea}{uncompress\-Existing\-Word} (int pos)
+\begin{DoxyCompactList}\small\item\em Fonction permettant de décompresser un mot connu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Librairie de compression et de décompression. \begin{DoxyAuthor}{Auteur}
+C\-O\-L\-L\-O\-M\-B Jérémie \href{mailto:contact@collombj.com}{\tt contact@collombj.\-com} F\-O\-R\-E\-T Gaël \href{mailto:gforet@etud.u-pem.fr}{\tt gforet@etud.\-u-\/pem.\-fr}
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+20/04/2015
+\end{DoxyDate}
+La librairie permet de compresser et de décompresser un fichier. La librairie offre les fonctions suivantes \-:
+
+
+\begin{DoxyItemize}
+\item \hyperlink{Compression_8h_a64ae0e46d2b0497d9fb7cb774dc675e8}{init\-List()} -- Pour initialiser la liste
+\item \hyperlink{Compression_8c_aa7c3bb463ef8e616bc87eed12a1908c9}{create\-Cel(char$\ast$)} -- Pour allouer une cellule en mémoire
+\item compress(char) -- Pour traiter un mot. Si le mot existe, on ajoute l'indice dans le texte compressé, sinon on créé une cellule en agissant dans le texte compressé.
+\item move\-Tobeginning(\-Cel$\ast$) -- Pour déplacer une cellule en tête de liste.
+\item \hyperlink{Compression_8h_ab24b0ffd297f7dddb29776d6c4b07fd1}{free\-Dictionnary()} -- Pour libérer la liste.
+\item \hyperlink{Compression_8c_a2434d97e8eb43308a4294e2d8f3547f7}{add\-Word\-Tail\-List(char$\ast$)} -- Pour insérer un mot en fin de liste
+\item \hyperlink{Compression_8c_ad0a77cdde35a92d7bcbe214e692dd071}{get\-Cel\-From\-Pos(int)} -- Pour récupérer la cellule à la position passé en paramètre
+\item \hyperlink{Compression_8c_a7dd085474763cfd067df625a95bb8997}{uncompress\-New\-Word(int, char$\ast$)}-- Pour décomprésser un nouveau mot (position valant 0)
+\item \hyperlink{Compression_8c_ad1d9d96ab0522f1c91867898e2aea2ea}{uncompress\-Existing\-Word(int)} -- Pour décomprésser un mot connu en position passé en paramètre 
+\end{DoxyItemize}
+
+\subsection{Documentation des définitions de type}
+\hypertarget{Compression_8h_ac1fe946328623a26bd313e411f218691}{\index{Compression.\-h@{Compression.\-h}!Cel@{Cel}}
+\index{Cel@{Cel}!Compression.h@{Compression.\-h}}
+\subsubsection[{Cel}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf cel}  {\bf Cel}}}\label{Compression_8h_ac1fe946328623a26bd313e411f218691}
+
+
+Structure représentant une celulle de liste, doublement chainée. 
+
+La structure représente une cellule doublement chainée. Celle-\/ci stocke un mot. \hypertarget{Compression_8h_a7fd8a4ee8d4c64f2ee79570a6b48e98a}{\index{Compression.\-h@{Compression.\-h}!List@{List}}
+\index{List@{List}!Compression.h@{Compression.\-h}}
+\subsubsection[{List}]{\setlength{\rightskip}{0pt plus 5cm}typedef {\bf Cel}$\ast$ {\bf List}}}\label{Compression_8h_a7fd8a4ee8d4c64f2ee79570a6b48e98a}
+
+
+Structure représentant le début de la liste chainée. 
+
+La liste représente le dictionnaire utilisé pour la compression. Par conséquent, celui-\/ci contient tous les mots compressés. La liste peut donc être très lourde en mémoire. 
+
+\subsection{Documentation des fonctions}
+\hypertarget{Compression_8h_a2434d97e8eb43308a4294e2d8f3547f7}{\index{Compression.\-h@{Compression.\-h}!add\-Word\-Tail\-List@{add\-Word\-Tail\-List}}
+\index{add\-Word\-Tail\-List@{add\-Word\-Tail\-List}!Compression.h@{Compression.\-h}}
+\subsubsection[{add\-Word\-Tail\-List}]{\setlength{\rightskip}{0pt plus 5cm}{\bf bool} add\-Word\-Tail\-List (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{word}
+\end{DoxyParamCaption}
+)}}\label{Compression_8h_a2434d97e8eb43308a4294e2d8f3547f7}
+
+
+Fonction permettant d'ajouter une cellule en fin de liste avec le mot passé en paramètre. 
+
+La fonction alloue de la mémoire à la cellule, et stocke le mot (word) dans celle-\/ci et l'ajoute en fin de liste.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em word} & Le mot devant être stocké dans la cellule\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Retourne true si la fonction est un succès sinon false 
+\end{DoxyReturn}
+\hypertarget{Compression_8h_a2013dde9cfd55a053885abaf0345881d}{\index{Compression.\-h@{Compression.\-h}!compress@{compress}}
+\index{compress@{compress}!Compression.h@{Compression.\-h}}
+\subsubsection[{compress}]{\setlength{\rightskip}{0pt plus 5cm}{\bf bool} compress (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{word}
+\end{DoxyParamCaption}
+)}}\label{Compression_8h_a2013dde9cfd55a053885abaf0345881d}
+
+
+Fonction compressant un mot. 
+
+La fonction prend en charge la compression d'un mot. \begin{DoxyVerb}        Algorithme :
+        Pour chaque mot du texte (mot ou ponctuation)
+        – Rechercher le mot dans la liste.
+        – Si le mot existe dans la liste, on le code à l’aide de sa position dans la liste, puis on le déplace en tête de liste.
+        – Si le mot n’est pas dans la liste, on le code par l’entier 0 suivi du mot en clair, et on ajoute ce mot en fin de liste.
+
+    Format :
+        - position -- si le mot existe déjà
+        - position tailleDuMot mot -- si le mot n'existe pas encore
+\end{DoxyVerb}
+
+
+
+\begin{DoxyParams}{Paramètres}
+{\em word} & Le mot a compresser\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+True si la compression est un succès, false sinon. 
+\end{DoxyReturn}
+\hypertarget{Compression_8h_aa7c3bb463ef8e616bc87eed12a1908c9}{\index{Compression.\-h@{Compression.\-h}!create\-Cel@{create\-Cel}}
+\index{create\-Cel@{create\-Cel}!Compression.h@{Compression.\-h}}
+\subsubsection[{create\-Cel}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Cel}$\ast$ create\-Cel (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{word}
+\end{DoxyParamCaption}
+)}}\label{Compression_8h_aa7c3bb463ef8e616bc87eed12a1908c9}
+
+
+Fonction permettant d'allouer de la mémoie pour une cellule. 
+
+La fonction alloue de la mémoire à la cellule, et stocke le mot (word) dans celle-\/ci.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em word} & Le mot devant être stocké dans la cellule\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Retourne le pointeur sur la cellule allouée en mémoire. 
+\end{DoxyReturn}
+\hypertarget{Compression_8h_ab24b0ffd297f7dddb29776d6c4b07fd1}{\index{Compression.\-h@{Compression.\-h}!free\-Dictionnary@{free\-Dictionnary}}
+\index{free\-Dictionnary@{free\-Dictionnary}!Compression.h@{Compression.\-h}}
+\subsubsection[{free\-Dictionnary}]{\setlength{\rightskip}{0pt plus 5cm}void free\-Dictionnary (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{Compression_8h_ab24b0ffd297f7dddb29776d6c4b07fd1}
+
+
+Fonction permettant de libérer la liste de la mémoire. 
+
+La fonction libère chaque cellulle, ainsi que le contenu de celle-\/ci, pour libérer la mémoire proprement. \hypertarget{Compression_8h_ad0a77cdde35a92d7bcbe214e692dd071}{\index{Compression.\-h@{Compression.\-h}!get\-Cel\-From\-Pos@{get\-Cel\-From\-Pos}}
+\index{get\-Cel\-From\-Pos@{get\-Cel\-From\-Pos}!Compression.h@{Compression.\-h}}
+\subsubsection[{get\-Cel\-From\-Pos}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Cel}$\ast$ get\-Cel\-From\-Pos (
+\begin{DoxyParamCaption}
+\item[{int}]{pos}
+\end{DoxyParamCaption}
+)}}\label{Compression_8h_ad0a77cdde35a92d7bcbe214e692dd071}
+
+
+Fonction permettant de récupérer la cellule à la position passé en paramètre. 
+
+La fonction parcourt la liste et renvoie la cellule à la position en paramètre. S'il n'y pas de cellule à cette position renvoie N\-U\-L\-L.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em pos} & La position de la cellule que l'on souhaite récupérer\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Retourne le pointeur sur la cellule. N\-U\-L\-L si la position n'existe pas dans la liste. 
+\end{DoxyReturn}
+\hypertarget{Compression_8h_a64ae0e46d2b0497d9fb7cb774dc675e8}{\index{Compression.\-h@{Compression.\-h}!init\-List@{init\-List}}
+\index{init\-List@{init\-List}!Compression.h@{Compression.\-h}}
+\subsubsection[{init\-List}]{\setlength{\rightskip}{0pt plus 5cm}void init\-List (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{Compression_8h_a64ae0e46d2b0497d9fb7cb774dc675e8}
+
+
+Fonction initialisant la liste. 
+
+La fonction initialise la variable static de stockage de la liste de mot.
+
+\begin{DoxyWarning}{Avertissement}
+Cette fonction doit être appelé avant toutes manipulations de la liste (l'intégrité des données pourraient être atteinte en cas de non respect de cette avertissement). 
+\end{DoxyWarning}
+\hypertarget{Compression_8h_a8b9a6488709370bbd80d0d37e8464e2c}{\index{Compression.\-h@{Compression.\-h}!move\-To\-Beginning@{move\-To\-Beginning}}
+\index{move\-To\-Beginning@{move\-To\-Beginning}!Compression.h@{Compression.\-h}}
+\subsubsection[{move\-To\-Beginning}]{\setlength{\rightskip}{0pt plus 5cm}void move\-To\-Beginning (
+\begin{DoxyParamCaption}
+\item[{{\bf Cel} $\ast$}]{move}
+\end{DoxyParamCaption}
+)}}\label{Compression_8h_a8b9a6488709370bbd80d0d37e8464e2c}
+
+
+Fonction permettant le déplacement d'une celulle en tête de liste. 
+
+La fonction déplace la celulle (move), présente dans la liste, en tête de la liste static.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em move} & C'est la cellule à déplacer en début de liste. \\
+\hline
+\end{DoxyParams}
+\hypertarget{Compression_8h_ad1d9d96ab0522f1c91867898e2aea2ea}{\index{Compression.\-h@{Compression.\-h}!uncompress\-Existing\-Word@{uncompress\-Existing\-Word}}
+\index{uncompress\-Existing\-Word@{uncompress\-Existing\-Word}!Compression.h@{Compression.\-h}}
+\subsubsection[{uncompress\-Existing\-Word}]{\setlength{\rightskip}{0pt plus 5cm}{\bf bool} uncompress\-Existing\-Word (
+\begin{DoxyParamCaption}
+\item[{int}]{pos}
+\end{DoxyParamCaption}
+)}}\label{Compression_8h_ad1d9d96ab0522f1c91867898e2aea2ea}
+
+
+Fonction permettant de décompresser un mot connu. 
+
+La fonction va chercher la cellule à la position indiqué en paramètre. Ecrit dans le fichier de sortie le mot de cette cellule et la déplace en tête de liste.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em pos} & La position dans la liste du mot connu;\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Retourne true si la décompression s'est bien déroulé sinon false 
+\end{DoxyReturn}
+\hypertarget{Compression_8h_a7dd085474763cfd067df625a95bb8997}{\index{Compression.\-h@{Compression.\-h}!uncompress\-New\-Word@{uncompress\-New\-Word}}
+\index{uncompress\-New\-Word@{uncompress\-New\-Word}!Compression.h@{Compression.\-h}}
+\subsubsection[{uncompress\-New\-Word}]{\setlength{\rightskip}{0pt plus 5cm}{\bf bool} uncompress\-New\-Word (
+\begin{DoxyParamCaption}
+\item[{int}]{size, }
+\item[{char $\ast$}]{word}
+\end{DoxyParamCaption}
+)}}\label{Compression_8h_a7dd085474763cfd067df625a95bb8997}
+
+
+Fonction permettant de décompresser un nouveau mot (position vallant 0). 
+
+La fonction écrit le mot dans le fichier de sortie et ajoute le mot en fin de liste.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em size} & Taille du mot. \\
+\hline
+{\em word} & Le mot à décompresser.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Retourne true si la décompression s'est bien déroulé sinon false 
+\end{DoxyReturn}

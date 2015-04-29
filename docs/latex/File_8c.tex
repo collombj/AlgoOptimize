@@ -1,0 +1,292 @@
+\hypertarget{File_8c}{\section{Référence du fichier src/\-File.c}
+\label{File_8c}\index{src/\-File.\-c@{src/\-File.\-c}}
+}
+
+
+Librairie des écritures et lectures dans des fichiers.  
+
+
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$string.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}File.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Compression.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Utils.\-h\char`\"{}}\\*
+\subsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{Utils_8h_af6a258d8f3ee5206d682d799316314b1}{bool} \hyperlink{File_8c_a5746fcb1ce156661085c2cb344e99d6b}{open} (char $\ast$input, char $\ast$output)
+\begin{DoxyCompactList}\small\item\em Fonction permettant d'ouvrir les fichiers d'entrée/sortie. \end{DoxyCompactList}\item 
+void \hyperlink{File_8c_a5ae591df94fc66ccb85cbb6565368bca}{close} ()
+\begin{DoxyCompactList}\small\item\em Fonction liberrant les fichiers d'entrée et de sortie de la compression/décompression. \end{DoxyCompactList}\item 
+void \hyperlink{File_8c_a179d1cd16bec0a47b86f636700b4501d}{write\-Binary\-From\-Short} (short nb)
+\begin{DoxyCompactList}\small\item\em Fonction écrivant (en binaire) le contenu de deux octets (short). \end{DoxyCompactList}\item 
+void \hyperlink{File_8c_a3bde5a86414f8f10e4ae26f1371c6562}{write\-Binary\-From\-Char} (char c)
+\begin{DoxyCompactList}\small\item\em Fonction écrivant (en binaire) le contenu d'un octet (char). \end{DoxyCompactList}\item 
+void \hyperlink{File_8c_aedcd2cba107caa180870d38ba3fbfcbc}{write\-Binary\-From\-Text} (char $\ast$txt, int length)
+\begin{DoxyCompactList}\small\item\em Fonction écrivant (en binaire) le texte (de longeur length) dans le fichier de sortie. \end{DoxyCompactList}\item 
+short \hyperlink{File_8c_aca784f321ec9ee6c4a343b9c4525224f}{read\-Short\-From\-Binary} ()
+\begin{DoxyCompactList}\small\item\em Fonction lisant, dans le fichier d'entrée, du binaire (deux octets) et le convertissant en short. \end{DoxyCompactList}\item 
+char \hyperlink{File_8c_a71377888a3f6fb1e38005e0aaaf18af6}{read\-Char\-From\-Binary} ()
+\begin{DoxyCompactList}\small\item\em Fonction lisant, dans le fichier d'entrée, du binaire (un octet) et le convertissant en char. \end{DoxyCompactList}\item 
+void \hyperlink{File_8c_a8793f6adbc3a1fb6dc46824ccdbfce9a}{read\-Text\-From\-Binary} (char $\ast$txt, int length)
+\begin{DoxyCompactList}\small\item\em Fonction lisant un texte, dans le fichier d'entrée, codé en binaire et le convertissant en texte A\-S\-C\-I\-I. \end{DoxyCompactList}\item 
+void \hyperlink{File_8c_a103d68d0a96563086c0e8b72d92b5b9d}{convert\-New\-Word\-To\-Binary} (int size, char $\ast$word)
+\begin{DoxyCompactList}\small\item\em Fonction permettant de saisir automatiquement du texte (en binaire) dans le fichier de sortie. \end{DoxyCompactList}\item 
+void \hyperlink{File_8c_a9af327121fcad39d75776cbdab61c763}{convert\-Position\-To\-Binary} (int pos)
+\begin{DoxyCompactList}\small\item\em Fonction permettant de saisir automatiquement le texte associé à un mot existant déjà en mémoire. \end{DoxyCompactList}\item 
+void \hyperlink{File_8c_a0e3bde91ce818c6ab5d0902e08dadd03}{parse\-Text} ()
+\begin{DoxyCompactList}\small\item\em Fonction parsant et compressant le fichier en entrée vers le fichier en sortie. \end{DoxyCompactList}\item 
+void \hyperlink{File_8c_a1ad5754d80c95aad0b0c2bf406838dd4}{parse\-Binary} ()
+\begin{DoxyCompactList}\small\item\em Fonction parsant et décompressant le fichier en entrée vers le fichier en sortie. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Librairie des écritures et lectures dans des fichiers. \begin{DoxyAuthor}{Auteur}
+C\-O\-L\-L\-O\-M\-B Jérémie \href{mailto:contact@collombj.com}{\tt contact@collombj.\-com} F\-O\-R\-E\-T Gaël \href{mailto:gforet@etud.u-pem.fr}{\tt gforet@etud.\-u-\/pem.\-fr}
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+20/04/2015
+\end{DoxyDate}
+La librairie permet de lire et écrire (en binaire et en texte clair) dans un fichier La librairie offre les fonctions suivantes \-:
+
+
+\begin{DoxyItemize}
+\item \hyperlink{File_8c_a5746fcb1ce156661085c2cb344e99d6b}{open(char$\ast$, char$\ast$)} -- Pour ouvrir un fichier d'entrée et un fichier de sortie.
+\item \hyperlink{File_8h_a5ae591df94fc66ccb85cbb6565368bca}{close()} -- Pour fermer les fichiers d'entrée et de sortie.
+\item ... vers binaire
+\begin{DoxyItemize}
+\item \hyperlink{File_8c_a179d1cd16bec0a47b86f636700b4501d}{write\-Binary\-From\-Short(short)} -- Pour écrire (en bianire -- fichier de sortie) un élément de taille 2 octets (short).
+\item \hyperlink{File_8c_a3bde5a86414f8f10e4ae26f1371c6562}{write\-Binary\-From\-Char(char)} -- Pour écrire (en binaire -- fichier de sortie) un élément de taille 1 octet (char).
+\item \hyperlink{File_8c_aedcd2cba107caa180870d38ba3fbfcbc}{write\-Binary\-From\-Text(char$\ast$, int)} -- Pour écrire (en binaire -- fichier de sortie) un élément de longueur définis.
+\end{DoxyItemize}
+\item Binaire vers ...
+\begin{DoxyItemize}
+\item \hyperlink{File_8h_aca784f321ec9ee6c4a343b9c4525224f}{read\-Short\-From\-Binary()} -- Pour lire (du binaire -- fichier d'entrée) un élément de taille 2 octets (short).
+\item \hyperlink{File_8h_a71377888a3f6fb1e38005e0aaaf18af6}{read\-Char\-From\-Binary()} -- Pour lire (du binaire -- fichier d'entrée) un élément de taille 2 octets (short).
+\item \hyperlink{File_8c_a8793f6adbc3a1fb6dc46824ccdbfce9a}{read\-Text\-From\-Binary(char$\ast$ txt, int length)} -- Pour lire (du binaire -- fichier d'entrée) un texte de longueur définis.
+\end{DoxyItemize}
+\item \hyperlink{File_8c_a103d68d0a96563086c0e8b72d92b5b9d}{convert\-New\-Word\-To\-Binary(int, char$\ast$)} -- Pour écrire un nouveau mot (compressé) dans le fichier.
+\item \hyperlink{File_8h_a9af327121fcad39d75776cbdab61c763}{convert\-Position\-To\-Binary()} -- Pour écrire la position d'un mot déjà compressé.
+\item Parse\-Text() -- Pour parser et compresser le fichier en entrée vers le fichier en sortie.
+\item parse\-Binary -- Pour parser et décompresser le fichier en entrée vers le fichier en sortie. 
+\end{DoxyItemize}
+
+\subsection{Documentation des fonctions}
+\hypertarget{File_8c_a5ae591df94fc66ccb85cbb6565368bca}{\index{File.\-c@{File.\-c}!close@{close}}
+\index{close@{close}!File.c@{File.\-c}}
+\subsubsection[{close}]{\setlength{\rightskip}{0pt plus 5cm}void close (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{File_8c_a5ae591df94fc66ccb85cbb6565368bca}
+
+
+Fonction liberrant les fichiers d'entrée et de sortie de la compression/décompression. 
+
+la fonction libère les fichiers d'entrée/sortie. \hypertarget{File_8c_a103d68d0a96563086c0e8b72d92b5b9d}{\index{File.\-c@{File.\-c}!convert\-New\-Word\-To\-Binary@{convert\-New\-Word\-To\-Binary}}
+\index{convert\-New\-Word\-To\-Binary@{convert\-New\-Word\-To\-Binary}!File.c@{File.\-c}}
+\subsubsection[{convert\-New\-Word\-To\-Binary}]{\setlength{\rightskip}{0pt plus 5cm}void convert\-New\-Word\-To\-Binary (
+\begin{DoxyParamCaption}
+\item[{int}]{size, }
+\item[{char $\ast$}]{word}
+\end{DoxyParamCaption}
+)}}\label{File_8c_a103d68d0a96563086c0e8b72d92b5b9d}
+
+
+Fonction permettant de saisir automatiquement du texte (en binaire) dans le fichier de sortie. 
+
+La fonction écrit le formatage d'un nouveau mot, en binaire, dans le fichier de sortie. La fonction formatte automatiquement le texte de la manière suivante \-:
+\begin{DoxyItemize}
+\item 0 size word -- Formatage mais sans les espaces
+\item char short text -- Représentation du type encodée en binaire
+\item 1 2 1$\ast$size -- Taille, en octet utilisé par le codage
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Paramètres}
+{\em size} & La taille du mot qui va être écrit en binaire \\
+\hline
+{\em word} & Le mot qui va être écrit en binaire \\
+\hline
+\end{DoxyParams}
+\hypertarget{File_8c_a9af327121fcad39d75776cbdab61c763}{\index{File.\-c@{File.\-c}!convert\-Position\-To\-Binary@{convert\-Position\-To\-Binary}}
+\index{convert\-Position\-To\-Binary@{convert\-Position\-To\-Binary}!File.c@{File.\-c}}
+\subsubsection[{convert\-Position\-To\-Binary}]{\setlength{\rightskip}{0pt plus 5cm}void convert\-Position\-To\-Binary (
+\begin{DoxyParamCaption}
+\item[{int}]{pos}
+\end{DoxyParamCaption}
+)}}\label{File_8c_a9af327121fcad39d75776cbdab61c763}
+
+
+Fonction permettant de saisir automatiquement le texte associé à un mot existant déjà en mémoire. 
+
+La fonction écit la position du mot (déjà présent en mémoire) dans le fichier de sortie. La position est codée sur un short (2 octets).
+
+
+\begin{DoxyParams}{Paramètres}
+{\em pos} & La position du mot déjà présent en mémoire. \\
+\hline
+\end{DoxyParams}
+\hypertarget{File_8c_a5746fcb1ce156661085c2cb344e99d6b}{\index{File.\-c@{File.\-c}!open@{open}}
+\index{open@{open}!File.c@{File.\-c}}
+\subsubsection[{open}]{\setlength{\rightskip}{0pt plus 5cm}{\bf bool} open (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{input, }
+\item[{char $\ast$}]{output}
+\end{DoxyParamCaption}
+)}}\label{File_8c_a5746fcb1ce156661085c2cb344e99d6b}
+
+
+Fonction permettant d'ouvrir les fichiers d'entrée/sortie. 
+
+La fonction ouvre les fichiers pour l'entrée et la sortie.
+
+\begin{DoxyWarning}{Avertissement}
+Le fichier d'entrée (input) doit existé. Le fichier de sortie (output) est totalement réécris.
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Paramètres}
+{\em input} & Le fichier (ouvert en lecture) contenant la source (compressée ou non). \\
+\hline
+{\em output} & Le fichier (ouvert en écriture) de destination de la décompression ou de la compression.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Si aucun problème ne survient, la fonction retourne true, false sinon. 
+\end{DoxyReturn}
+\hypertarget{File_8c_a1ad5754d80c95aad0b0c2bf406838dd4}{\index{File.\-c@{File.\-c}!parse\-Binary@{parse\-Binary}}
+\index{parse\-Binary@{parse\-Binary}!File.c@{File.\-c}}
+\subsubsection[{parse\-Binary}]{\setlength{\rightskip}{0pt plus 5cm}void parse\-Binary (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{File_8c_a1ad5754d80c95aad0b0c2bf406838dd4}
+
+
+Fonction parsant et décompressant le fichier en entrée vers le fichier en sortie. 
+
+la fonction parse et décompresse le contenu du fichier en entrée vers le fichier de sortie. Le parsage est réalisé en séparant les mots et les caractères spéciaux. \hypertarget{File_8c_a0e3bde91ce818c6ab5d0902e08dadd03}{\index{File.\-c@{File.\-c}!parse\-Text@{parse\-Text}}
+\index{parse\-Text@{parse\-Text}!File.c@{File.\-c}}
+\subsubsection[{parse\-Text}]{\setlength{\rightskip}{0pt plus 5cm}void parse\-Text (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{File_8c_a0e3bde91ce818c6ab5d0902e08dadd03}
+
+
+Fonction parsant et compressant le fichier en entrée vers le fichier en sortie. 
+
+la fonction parse et compresse le contenu du fichier en entrée vers le fichier de sortie. Le parsage est réalisé en séparant les mots et les caractères spéciaux. \hypertarget{File_8c_a71377888a3f6fb1e38005e0aaaf18af6}{\index{File.\-c@{File.\-c}!read\-Char\-From\-Binary@{read\-Char\-From\-Binary}}
+\index{read\-Char\-From\-Binary@{read\-Char\-From\-Binary}!File.c@{File.\-c}}
+\subsubsection[{read\-Char\-From\-Binary}]{\setlength{\rightskip}{0pt plus 5cm}char read\-Char\-From\-Binary (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{File_8c_a71377888a3f6fb1e38005e0aaaf18af6}
+
+
+Fonction lisant, dans le fichier d'entrée, du binaire (un octet) et le convertissant en char. 
+
+La fonction lit, dans le fichier d'entrée, le binaire (un octet) et le convertit en char.
+
+\begin{DoxyReturn}{Renvoie}
+Char représentant l'octet lu dans le fichier d'entrée. 
+\end{DoxyReturn}
+\hypertarget{File_8c_aca784f321ec9ee6c4a343b9c4525224f}{\index{File.\-c@{File.\-c}!read\-Short\-From\-Binary@{read\-Short\-From\-Binary}}
+\index{read\-Short\-From\-Binary@{read\-Short\-From\-Binary}!File.c@{File.\-c}}
+\subsubsection[{read\-Short\-From\-Binary}]{\setlength{\rightskip}{0pt plus 5cm}short read\-Short\-From\-Binary (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{File_8c_aca784f321ec9ee6c4a343b9c4525224f}
+
+
+Fonction lisant, dans le fichier d'entrée, du binaire (deux octets) et le convertissant en short. 
+
+La fonction lit, dans le fichier d'entrée, le binaire (deux octets) et le convertit en short.
+
+\begin{DoxyReturn}{Renvoie}
+Short représentant les deux octets lus dans le fichier d'entrée. 
+\end{DoxyReturn}
+\hypertarget{File_8c_a8793f6adbc3a1fb6dc46824ccdbfce9a}{\index{File.\-c@{File.\-c}!read\-Text\-From\-Binary@{read\-Text\-From\-Binary}}
+\index{read\-Text\-From\-Binary@{read\-Text\-From\-Binary}!File.c@{File.\-c}}
+\subsubsection[{read\-Text\-From\-Binary}]{\setlength{\rightskip}{0pt plus 5cm}void read\-Text\-From\-Binary (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{txt, }
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}}\label{File_8c_a8793f6adbc3a1fb6dc46824ccdbfce9a}
+
+
+Fonction lisant un texte, dans le fichier d'entrée, codé en binaire et le convertissant en texte A\-S\-C\-I\-I. 
+
+La fonction lit length octets (en binaire) pour créer un texte A\-S\-C\-I\-I. Ce texte est stocké directement dans le paramètre txt.
+
+\begin{DoxyWarning}{Avertissement}
+La fonction modifie le paramètre txt.
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Paramètres}
+{\em txt} & C'est la variable qui hébergera le texte lu par la fonction \\
+\hline
+{\em length} & C'est la longeur du texte que doit lire la fonction (nombre d'octets = nombre de caractères). \\
+\hline
+\end{DoxyParams}
+\hypertarget{File_8c_a3bde5a86414f8f10e4ae26f1371c6562}{\index{File.\-c@{File.\-c}!write\-Binary\-From\-Char@{write\-Binary\-From\-Char}}
+\index{write\-Binary\-From\-Char@{write\-Binary\-From\-Char}!File.c@{File.\-c}}
+\subsubsection[{write\-Binary\-From\-Char}]{\setlength{\rightskip}{0pt plus 5cm}void write\-Binary\-From\-Char (
+\begin{DoxyParamCaption}
+\item[{char}]{c}
+\end{DoxyParamCaption}
+)}}\label{File_8c_a3bde5a86414f8f10e4ae26f1371c6562}
+
+
+Fonction écrivant (en binaire) le contenu d'un octet (char). 
+
+La fonction écrit (en binaire), dans le fichier de sortie, le contenu du paramètre (seulement le premier octet).
+
+
+\begin{DoxyParams}{Paramètres}
+{\em c} & Le première octet à écrire dans le fichier de sortie. \\
+\hline
+\end{DoxyParams}
+\hypertarget{File_8c_a179d1cd16bec0a47b86f636700b4501d}{\index{File.\-c@{File.\-c}!write\-Binary\-From\-Short@{write\-Binary\-From\-Short}}
+\index{write\-Binary\-From\-Short@{write\-Binary\-From\-Short}!File.c@{File.\-c}}
+\subsubsection[{write\-Binary\-From\-Short}]{\setlength{\rightskip}{0pt plus 5cm}void write\-Binary\-From\-Short (
+\begin{DoxyParamCaption}
+\item[{short}]{nb}
+\end{DoxyParamCaption}
+)}}\label{File_8c_a179d1cd16bec0a47b86f636700b4501d}
+
+
+Fonction écrivant (en binaire) le contenu de deux octets (short). 
+
+La fonction écrit (en binaire), dans le fichier de sortie, le contenu du paramètre (seulement les deux premiers octets).
+
+
+\begin{DoxyParams}{Paramètres}
+{\em nb} & Les deux premiers octets à écrire dans le fichier de sortie. \\
+\hline
+\end{DoxyParams}
+\hypertarget{File_8c_aedcd2cba107caa180870d38ba3fbfcbc}{\index{File.\-c@{File.\-c}!write\-Binary\-From\-Text@{write\-Binary\-From\-Text}}
+\index{write\-Binary\-From\-Text@{write\-Binary\-From\-Text}!File.c@{File.\-c}}
+\subsubsection[{write\-Binary\-From\-Text}]{\setlength{\rightskip}{0pt plus 5cm}void write\-Binary\-From\-Text (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{txt, }
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}}\label{File_8c_aedcd2cba107caa180870d38ba3fbfcbc}
+
+
+Fonction écrivant (en binaire) le texte (de longeur length) dans le fichier de sortie. 
+
+La fonction écrit (en binaire), dans le fichier de sortie, le texte de longueur length.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em txt} & Texte à écrire dans le fichier de sortie \\
+\hline
+{\em length} & Taille du texte à écrire \\
+\hline
+\end{DoxyParams}

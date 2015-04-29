@@ -22,12 +22,12 @@
  * 			 - Binaire vers ...
  * 			 	- readShortFromBinary() 					-- Pour lire (du binaire -- fichier d'entrée) un élément de taille 2 octets (short).
  * 			 	- readCharFromBinary()  					-- Pour lire (du binaire -- fichier d'entrée) un élément de taille 2 octets (short).
- * 			 	- readTextFromBinary(char* txt, int length) -- Pour lire (du binaire -- fichier d'entrée) un texte de longueur définis.
+ * 			 	- readTextFromBinary(char*, int) 			-- Pour lire (du binaire -- fichier d'entrée) un texte de longueur définis.
  * 			 	
  * 			 - convertNewWordToBinary(int, char*)  -- Pour écrire un nouveau mot (compressé) dans le fichier.
  * 			 - convertPositionToBinary() 		   -- Pour écrire la position d'un mot déjà compressé.
  * 			 
- * 			 - ParseText() -- Pour parser et compresser le fichier en entrée vers le fichier en sortie.
+ * 			 - parseText() -- Pour parser et compresser le fichier en entrée vers le fichier en sortie.
  * 			 - parseBinary -- Pour parser et décompresser le fichier en entrée vers  le fichier en sortie.
  */
 
@@ -76,7 +76,7 @@ void writeBinaryFromShort(short nb);
  * 
  * @details La fonction écrit (en binaire), dans le fichier de sortie, le contenu du paramètre (seulement le premier octet).
  * 
- * @param nb Le première octet à écrire dans le fichier de sortie.
+ * @param c Le première octet à écrire dans le fichier de sortie.
  */
 void writeBinaryFromChar(char c);
 
@@ -85,7 +85,8 @@ void writeBinaryFromChar(char c);
  * 
  * @details La fonction écrit (en binaire), dans le fichier de sortie, le texte de longueur length.
  * 
- * @param nb Les deux premiers octets à écrire dans le fichier de sortie.
+ * @param txt Texte à écrire dans le fichier de sortie
+ * @param length Taille du texte à écrire
  */
 void writeBinaryFromText(char* txt, int length);
 
